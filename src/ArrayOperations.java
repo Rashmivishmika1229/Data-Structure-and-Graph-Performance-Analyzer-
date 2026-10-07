@@ -43,4 +43,14 @@ public boolean delete(int index) {
 
     return true;
 }
+public int search(int value) {
+    for (int i = 0; i < size; i++) {
+        if (values[i] == value) {
+            return i;
+        }
+    }
+
+    return -1;
 }
+}
+
