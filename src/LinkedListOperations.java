@@ -44,4 +44,27 @@ public void display() {
 
     System.out.println("null");
 }
+public boolean delete(int data) {
+    if (head == null) {
+        return false;
+    }
+
+    if (head.data == data) {
+        head = head.next;
+        return true;
+    }
+
+    Node current = head;
+
+    while (current.next != null && current.next.data != data) {
+        current = current.next;
+    }
+
+    if (current.next == null) {
+        return false;
+    }
+
+    current.next = current.next.next;
+    return true;
+}
 }
