@@ -67,4 +67,19 @@ public boolean delete(int data) {
     current.next = current.next.next;
     return true;
 }
+public int search(int data) {
+    Node current = head;
+    int position = 0;
+
+    while (current != null) {
+        if (current.data == data) {
+            return position;
+        }
+
+        current = current.next;
+        position++;
+    }
+
+    return -1;
+}
 }
