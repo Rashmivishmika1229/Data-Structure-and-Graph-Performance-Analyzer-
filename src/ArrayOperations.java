@@ -30,4 +30,17 @@ public void display() {
 
     System.out.println();
 }
+public boolean delete(int index) {
+    if (index < 0 || index >= size) {
+        return false;
+    }
+
+    for (int i = index; i < size - 1; i++) {
+        values[i] = values[i + 1];
+    }
+
+    size--;
+
+    return true;
+}
 }
