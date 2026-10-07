@@ -16,4 +16,18 @@ public boolean insert(int index, int value) {
 
     return true;
 }
+public void display() {
+    if (size == 0) {
+        System.out.println("Array is empty.");
+        return;
+    }
+
+    System.out.print("Array elements: ");
+
+    for (int i = 0; i < size; i++) {
+        System.out.print(values[i] + " ");
+    }
+
+    System.out.println();
+}
 }
