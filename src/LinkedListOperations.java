@@ -27,4 +27,21 @@ public class LinkedListOperations {
 
     current.next = newNode;
 }
+public void display() {
+    if (head == null) {
+        System.out.println("Linked List is empty.");
+        return;
+    }
+
+    Node current = head;
+
+    System.out.print("Linked List: ");
+
+    while (current != null) {
+        System.out.print(current.data + " -> ");
+        current = current.next;
+    }
+
+    System.out.println("null");
+}
 }
