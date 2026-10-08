@@ -1,97 +1,85 @@
 public class LinkedListOperations {
+
     private Node head;
-    private int size;
 
     private static class Node {
-        int value;
+        int data;
         Node next;
 
-        Node(int value) {
-            this.value = value;
+        Node(int data) {
+            this.data = data;
+            this.next = null;
         }
     }
+    public void insert(int data) {
+    Node newNode = new Node(data);
 
-    public int getSize() {
-        return size;
+    if (head == null) {
+        head = newNode;
+        return;
     }
 
-    public boolean insert(int index, int value) {
-        if (index < 0 || index > size) {
-            return false;
-        }
+    Node current = head;
 
-        Node newNode = new Node(value);
+    while (current.next != null) {
+        current = current.next;
+    }
 
-        if (index == 0) {
-            newNode.next = head;
-            head = newNode;
-        } else {
-            Node previous = head;
-            for (int i = 0; i < index - 1; i++) {
-                previous = previous.next;
-            }
+    current.next = newNode;
+}
+public void display() {
+    if (head == null) {
+        System.out.println("Linked List is empty.");
+        return;
+    }
 
-            newNode.next = previous.next;
-            previous.next = newNode;
-        }
+    Node current = head;
 
-        size++;
+    System.out.print("Linked List: ");
+
+    while (current != null) {
+        System.out.print(current.data + " -> ");
+        current = current.next;
+    }
+
+    System.out.println("null");
+}
+public boolean delete(int data) {
+    if (head == null) {
+        return false;
+    }
+
+    if (head.data == data) {
+        head = head.next;
         return true;
     }
 
-    public Integer delete(int index) {
-        if (index < 0 || index >= size) {
-            return null;
-        }
+    Node current = head;
 
-        Node removedNode;
-
-        if (index == 0) {
-            removedNode = head;
-            head = head.next;
-        } else {
-            Node previous = head;
-            for (int i = 0; i < index - 1; i++) {
-                previous = previous.next;
-            }
-
-            removedNode = previous.next;
-            previous.next = removedNode.next;
-        }
-
-        size--;
-        return removedNode.value;
+    while (current.next != null && current.next.data != data) {
+        current = current.next;
     }
 
-    public int search(int target) {
-        Node current = head;
-        int index = 0;
-
-        while (current != null) {
-            if (current.value == target) {
-                return index;
-            }
-
-            current = current.next;
-            index++;
-        }
-
-        return -1;
+    if (current.next == null) {
+        return false;
     }
 
-    public void display() {
-        if (head == null) {
-            System.out.println("The linked list is empty.");
-            return;
+    current.next = current.next.next;
+    return true;
+}
+public int search(int data) {
+    Node current = head;
+    int position = 0;
+
+    while (current != null) {
+        if (current.data == data) {
+            return position;
         }
 
-        Node current = head;
-        int index = 0;
-
-        while (current != null) {
-            System.out.println("Index " + index + ": " + current.value);
-            current = current.next;
-            index++;
-        }
+        current = current.next;
+        position++;
     }
+
+    return -1;
+}
 }
