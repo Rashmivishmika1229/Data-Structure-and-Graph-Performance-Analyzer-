@@ -29,6 +29,14 @@ public class PerformanceComparison {
                     return;
                 }
             }
+
+            System.out.print("Value to search for: ");
+            int target = Integer.parseInt(input.nextLine());
+
+            long startTime = System.nanoTime();
+            int linearIndex = searches.linearSearch(values, target);
+            long linearTime = System.nanoTime() - startTime;
+            int linearSteps = searches.getLastSteps();
         }
     }
 }
