@@ -15,3 +15,20 @@ public class PerformanceComparison {
                 System.out.println("Enter a number from 1 to 100.");
                 return;
             }
+
+            int[] values = new int[count];
+            System.out.println("Enter the numbers in ascending order.");
+
+            for (int i = 0; i < count; i++) {
+                System.out.print("Number " + (i + 1) + ": ");
+                values[i] = Integer.parseInt(input.nextLine());
+
+                if (i > 0 && values[i] < values[i - 1]) {
+                    System.out.println(
+                            "The numbers must be in ascending order.");
+                    return;
+                }
+            }
+        }
+    }
+}
