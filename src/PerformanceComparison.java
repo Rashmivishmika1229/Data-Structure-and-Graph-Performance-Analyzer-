@@ -44,16 +44,30 @@ public class PerformanceComparison {
             int binarySteps = searches.getLastSteps();
 
             System.out.println("\nSEARCH COMPARISON");
-
             System.out.println(
                     "Linear Search: index=" + linearIndex
                             + ", comparisons=" + linearSteps
                             + ", time=" + linearTime + " ns");
-
             System.out.println(
                     "Binary Search: index=" + binaryIndex
                             + ", comparisons=" + binarySteps
                             + ", time=" + binaryTime + " ns");
+
+            System.out.print(
+                    "\nStarting graph vertex for BFS and DFS: ");
+            int startVertex = Integer.parseInt(input.nextLine());
+
+            startTime = System.nanoTime();
+            List<Integer> bfsOrder =
+                    graph.breadthFirstTraversal(startVertex);
+            long bfsTime = System.nanoTime() - startTime;
+            int bfsSteps = graph.getLastSteps();
+
+            startTime = System.nanoTime();
+            List<Integer> dfsOrder =
+                    graph.depthFirstTraversal(startVertex);
+            long dfsTime = System.nanoTime() - startTime;
+            int dfsSteps = graph.getLastSteps();
         }
     }
 }
