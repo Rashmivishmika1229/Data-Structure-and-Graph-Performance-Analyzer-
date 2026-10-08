@@ -68,6 +68,29 @@ public class PerformanceComparison {
                     graph.depthFirstTraversal(startVertex);
             long dfsTime = System.nanoTime() - startTime;
             int dfsSteps = graph.getLastSteps();
+
+            System.out.println("\nGRAPH TRAVERSAL COMPARISON");
+            System.out.println(
+                    "BFS: order=" + bfsOrder
+                            + ", neighbor checks=" + bfsSteps
+                            + ", time=" + bfsTime + " ns");
+            System.out.println(
+                    "DFS: order=" + dfsOrder
+                            + ", neighbor checks=" + dfsSteps
+                            + ", time=" + dfsTime + " ns");
+
+            if (bfsOrder.isEmpty()) {
+                System.out.println(
+                        "No graph traversal occurred. Add vertices and edges "
+                                + "first, and enter an existing start vertex.");
+            }
+
+            System.out.println(
+                    "\nExecution times can vary between runs, especially "
+                            + "for small inputs.");
+
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter whole numbers.");
         }
     }
 }
