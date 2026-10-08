@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Main {
     private static final String BOLD = "\033[1m";
     private static final String RESET = "\033[0m";
-    private static final String LINE = "================================================";
+    private static final String LINE =
+            "================================================";
 
     private static void showTitle(String title) {
         System.out.println();
@@ -70,7 +71,7 @@ public class Main {
         }
 
         input.close();
-        System.out.println("Thank you for using Data Structure & Graph Analyzer!");
+        System.out.println("Goodbye!");
     }
 
     private static void arrayMenu(Scanner input, ArrayOperations array) {
@@ -145,63 +146,64 @@ public class Main {
         }
     }
 
-    boolean inMenu = true;
+    private static void stackMenu(Scanner input, StackOperations stack) {
+        boolean inMenu = true;
 
-    while(inMenu)
-    {
-        showTitle("STACK OPERATIONS");
-        System.out.println("1. Push");
-        System.out.println("2. Pop");
-        System.out.println("3. Peek");
-        System.out.println("4. Display stack");
-        System.out.println("0. Return to main menu");
-        System.out.println("----------------------------------------------");
-        System.out.print("Enter your choice: ");
+        while (inMenu) {
+            showTitle("STACK OPERATIONS");
+            System.out.println("1. Push");
+            System.out.println("2. Pop");
+            System.out.println("3. Peek");
+            System.out.println("4. Display stack");
+            System.out.println("0. Return to main menu");
+            System.out.println("----------------------------------------------");
+            System.out.print("Enter your choice: ");
 
-        String choice = input.nextLine();
+            String choice = input.nextLine();
 
-        if (choice.equals("1")) {
-            System.out.print("Value to push: ");
+            if (choice.equals("1")) {
+                System.out.print("Value to push: ");
 
-            try {
-                int value = Integer.parseInt(input.nextLine());
+                try {
+                    int value = Integer.parseInt(input.nextLine());
 
-                if (stack.push(value)) {
-                    System.out.println("Value pushed onto the stack.");
-                } else {
-                    System.out.println("The stack is full.");
+                    if (stack.push(value)) {
+                        System.out.println("Value pushed onto the stack.");
+                    } else {
+                        System.out.println("The stack is full.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a whole number.");
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a whole number.");
-            }
 
-        } else if (choice.equals("2")) {
-            Integer removedValue = stack.pop();
+            } else if (choice.equals("2")) {
+                Integer removedValue = stack.pop();
 
-            if (removedValue == null) {
-                System.out.println("Cannot pop: the stack is empty.");
+                if (removedValue == null) {
+                    System.out.println("Cannot pop: the stack is empty.");
+                } else {
+                    System.out.println("Popped value: " + removedValue);
+                }
+
+            } else if (choice.equals("3")) {
+                Integer topValue = stack.peek();
+
+                if (topValue == null) {
+                    System.out.println("Cannot peek: the stack is empty.");
+                } else {
+                    System.out.println("Top value: " + topValue);
+                }
+
+            } else if (choice.equals("4")) {
+                stack.display();
+            } else if (choice.equals("0")) {
+                inMenu = false;
             } else {
-                System.out.println("Popped value: " + removedValue);
+                System.out.println("Invalid choice. Try again.");
             }
-
-        } else if (choice.equals("3")) {
-            Integer topValue = stack.peek();
-
-            if (topValue == null) {
-                System.out.println("Cannot peek: the stack is empty.");
-            } else {
-                System.out.println("Top value: " + topValue);
-            }
-
-        } else if (choice.equals("4")) {
-            stack.display();
-        } else if (choice.equals("0")) {
-            inMenu = false;
-        } else {
-            System.out.println("Invalid choice. Try again.");
         }
     }
-}
+
     private static void queueMenu(Scanner input, QueueOperations queue) {
         boolean inMenu = true;
 
@@ -259,7 +261,8 @@ public class Main {
             }
         }
     }
-        private static void linkedListMenu(
+
+    private static void linkedListMenu(
             Scanner input, LinkedListOperations linkedList) {
         boolean inMenu = true;
 
@@ -335,7 +338,8 @@ public class Main {
             }
         }
     }
-        private static void searchMenu(
+
+    private static void searchMenu(
             Scanner input, SearchOperations searches) {
         try {
             showTitle("SEARCHING OPERATIONS");
@@ -391,7 +395,8 @@ public class Main {
             System.out.println("Please enter whole numbers.");
         }
     }
-        private static void graphMenu(Scanner input, GraphOperations graph) {
+
+    private static void graphMenu(Scanner input, GraphOperations graph) {
         boolean inMenu = true;
 
         while (inMenu) {
@@ -473,5 +478,34 @@ public class Main {
             } catch (NumberFormatException e) {
                 System.out.println("Please enter whole numbers.");
             }
-        }
+     
+
+    
+
+    private static void displayAllResults(
+            ArrayOperations array,
+            StackOperations stack,
+            QueueOperations queue,
+            LinkedListOperations linkedList,
+            GraphOperations graph) {
+        showTitle("CURRENT DATA STRUCTURE RESULTS");
+
+        showTitle("ARRAY");
+        array.display();
+
+        showTitle("STACK");
+        stack.display();
+
+        showTitle("QUEUE");
+        queue.display();
+
+        showTitle("LINKED LIST");
+        linkedList.display();
+
+        showTitle("GRAPH");
+        graph.display();
+
+        System.out.println(
+                "\nSearch and performance results are shown when those operations run.");
     }
+}
