@@ -52,3 +52,34 @@ public class GraphOperations {
             System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
     }
+
+    public List<Integer> breadthFirstTraversal(int start) {
+        List<Integer> order = new ArrayList<>();
+        lastSteps = 0;
+
+        if (!adjacencyList.containsKey(start)) {
+            return order;
+        }
+
+        Set<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new ArrayDeque<>();
+
+        visited.add(start);
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            int current = queue.remove();
+            order.add(current);
+
+            for (int neighbor : adjacencyList.get(current)) {
+                lastSteps++;
+
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        return order;
+    }
