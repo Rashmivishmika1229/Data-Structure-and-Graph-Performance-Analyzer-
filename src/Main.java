@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class Main {
     private static final String BOLD = "\033[1m";
     private static final String RESET = "\033[0m";
-    private static final String LINE =
-            "================================================";
+    private static final String LINE = "================================================";
 
     private static void showTitle(String title) {
         System.out.println();
@@ -13,7 +12,7 @@ public class Main {
         System.out.println(LINE);
     }
 
-      public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         ArrayOperations array = new ArrayOperations();
         StackOperations stack = new StackOperations();
@@ -73,3 +72,77 @@ public class Main {
         input.close();
         System.out.println("Thank you for using Data Structure & Graph Analyzer!");
     }
+
+    
+    private static void arrayMenu(Scanner input, ArrayOperations array) {
+        boolean inMenu = true;
+
+        while (inMenu) {
+            showTitle("ARRAY OPERATIONS");
+            System.out.println("1. Insert value");
+            System.out.println("2. Delete by index");
+            System.out.println("3. Search by value");
+            System.out.println("4. Display array");
+            System.out.println("0. Return to main menu");
+            System.out.println("----------------------------------------------");
+            System.out.print("Enter your choice: ");
+
+            String choice = input.nextLine();
+
+            if (choice.equals("1")) {
+                System.out.print("Value to insert: ");
+
+                try {
+                    int value = Integer.parseInt(input.nextLine());
+
+                    if (array.insert(array.getSize(), value)) {
+                        System.out.println("Value inserted.");
+                    } else {
+                        System.out.println("The array is full.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a whole number.");
+                }
+
+            } else if (choice.equals("2")) {
+                System.out.print("Index to delete: ");
+
+                try {
+                    int index = Integer.parseInt(input.nextLine());
+                    Integer removedValue = array.delete(index);
+
+                    if (removedValue == null) {
+                        System.out.println("Invalid index or the array is empty.");
+                    } else {
+                        System.out.println("Deleted value: " + removedValue);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a whole number.");
+                }
+
+            } else if (choice.equals("3")) {
+                System.out.print("Value to search for: ");
+
+                try {
+                    int value = Integer.parseInt(input.nextLine());
+                    int index = array.search(value);
+
+                    if (index == -1) {
+                        System.out.println("Value not found.");
+                    } else {
+                        System.out.println("Value found at index " + index + ".");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a whole number.");
+                }
+
+            } else if (choice.equals("4")) {
+                array.display();
+            } else if (choice.equals("0")) {
+                inMenu = false;
+            } else {
+                System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
+
