@@ -39,3 +39,16 @@ public class GraphOperations {
 
         return true;
     }
+
+    public void display() {
+        if (adjacencyList.isEmpty()) {
+            System.out.println("The graph has no vertices.");
+            return;
+        }
+
+        System.out.println("Graph adjacency list:");
+        for (Map.Entry<Integer, List<Integer>> entry
+                : adjacencyList.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+    }
