@@ -20,3 +20,22 @@ public class GraphOperations {
         adjacencyList.put(vertex, new LinkedList<>());
         return true;
     }
+
+    public boolean addEdge(int from, int to) {
+        if (!adjacencyList.containsKey(from)
+                || !adjacencyList.containsKey(to)) {
+            return false;
+        }
+
+        if (adjacencyList.get(from).contains(to)) {
+            return false;
+        }
+
+        adjacencyList.get(from).add(to);
+
+        if (from != to) {
+            adjacencyList.get(to).add(from);
+        }
+
+        return true;
+    }
