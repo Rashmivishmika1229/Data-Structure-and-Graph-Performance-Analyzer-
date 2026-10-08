@@ -1,8 +1,8 @@
 public class ArrayOperations {
+
     private int[] values = new int[100];
     private int size = 0;
-
-    public boolean insert(int index, int value) {
+public boolean insert(int index, int value) {
     if (index < 0 || index > size || size == values.length) {
         return false;
     }
@@ -13,42 +13,39 @@ public class ArrayOperations {
 
     values[index] = value;
     size++;
+
     return true;
 }
-
 public void display() {
     if (size == 0) {
-        System.out.println("The array is empty.");
+        System.out.println("Array is empty.");
         return;
     }
 
+    System.out.print("Array elements: ");
+
     for (int i = 0; i < size; i++) {
-        System.out.println("Index " + i + ": " + values[i]);
+        System.out.print(values[i] + " ");
     }
-}
 
-public int getSize() {
-    return size;
+    System.out.println();
 }
-
-public Integer delete(int index) {
+public boolean delete(int index) {
     if (index < 0 || index >= size) {
-        return null;
+        return false;
     }
-
-    int removedValue = values[index];
 
     for (int i = index; i < size - 1; i++) {
         values[i] = values[i + 1];
     }
 
     size--;
-    return removedValue;
-}
 
-public int search(int target) {
+    return true;
+}
+public int search(int value) {
     for (int i = 0; i < size; i++) {
-        if (values[i] == target) {
+        if (values[i] == value) {
             return i;
         }
     }
@@ -56,3 +53,4 @@ public int search(int target) {
     return -1;
 }
 }
+
