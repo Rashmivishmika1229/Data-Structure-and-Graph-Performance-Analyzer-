@@ -83,3 +83,16 @@ public class GraphOperations {
 
         return order;
     }
+
+    public List<Integer> depthFirstTraversal(int start) {
+        List<Integer> order = new ArrayList<>();
+        lastSteps = 0;
+
+        if (!adjacencyList.containsKey(start)) {
+            return order;
+        }
+
+        Set<Integer> visited = new HashSet<>();
+        depthFirstVisit(start, visited, order);
+        return order;
+    }
