@@ -391,3 +391,87 @@ public class Main {
             System.out.println("Please enter whole numbers.");
         }
     }
+        private static void graphMenu(Scanner input, GraphOperations graph) {
+        boolean inMenu = true;
+
+        while (inMenu) {
+            showTitle("GRAPH OPERATIONS");
+            System.out.println("1. Add vertex");
+            System.out.println("2. Add edge");
+            System.out.println("3. Display graph");
+            System.out.println("4. BFS traversal");
+            System.out.println("5. DFS traversal");
+            System.out.println("6. Search for reachable vertex");
+            System.out.println("0. Return to main menu");
+            System.out.println("----------------------------------------------");
+            System.out.print("Enter your choice: ");
+
+            String choice = input.nextLine();
+
+            try {
+                if (choice.equals("1")) {
+                    System.out.print("Vertex number to add: ");
+                    int vertex = Integer.parseInt(input.nextLine());
+
+                    if (graph.addVertex(vertex)) {
+                        System.out.println("Vertex added.");
+                    } else {
+                        System.out.println("That vertex already exists.");
+                    }
+
+                } else if (choice.equals("2")) {
+                    System.out.print("First vertex: ");
+                    int from = Integer.parseInt(input.nextLine());
+                    System.out.print("Second vertex: ");
+                    int to = Integer.parseInt(input.nextLine());
+
+                    if (graph.addEdge(from, to)) {
+                        System.out.println("Edge added.");
+                    } else {
+                        System.out.println(
+                                "Could not add edge. Make sure both vertices "
+                                        + "exist and the edge is not repeated.");
+                    }
+
+                } else if (choice.equals("3")) {
+                    graph.display();
+
+                } else if (choice.equals("4")) {
+                    System.out.print("Starting vertex for BFS: ");
+                    int start = Integer.parseInt(input.nextLine());
+                    System.out.println(
+                            "BFS order: "
+                                    + graph.breadthFirstTraversal(start));
+
+                } else if (choice.equals("5")) {
+                    System.out.print("Starting vertex for DFS: ");
+                    int start = Integer.parseInt(input.nextLine());
+                    System.out.println(
+                            "DFS order: "
+                                    + graph.depthFirstTraversal(start));
+
+                } else if (choice.equals("6")) {
+                    System.out.print("Starting vertex: ");
+                    int start = Integer.parseInt(input.nextLine());
+                    System.out.print("Vertex to search for: ");
+                    int target = Integer.parseInt(input.nextLine());
+
+                    if (graph.isReachable(start, target)) {
+                        System.out.println(
+                                target + " is reachable from " + start + ".");
+                    } else {
+                        System.out.println(
+                                target + " is not reachable from " + start
+                                        + " (or a vertex does not exist).");
+                    }
+
+                } else if (choice.equals("0")) {
+                    inMenu = false;
+                } else {
+                    System.out.println("Invalid choice. Try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter whole numbers.");
+            }
+        }
+    }
