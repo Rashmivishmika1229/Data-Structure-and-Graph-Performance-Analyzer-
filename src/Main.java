@@ -335,3 +335,59 @@ public class Main {
             }
         }
     }
+        private static void searchMenu(
+            Scanner input, SearchOperations searches) {
+        try {
+            showTitle("SEARCHING OPERATIONS");
+            System.out.println("Enter values in ascending order for binary search.");
+            System.out.println("----------------------------------------------");
+
+            System.out.print("How many numbers will you enter? ");
+            int count = Integer.parseInt(input.nextLine());
+
+            if (count <= 0 || count > 100) {
+                System.out.println("Enter a number from 1 to 100.");
+                return;
+            }
+
+            int[] values = new int[count];
+
+            for (int i = 0; i < count; i++) {
+                System.out.print("Number " + (i + 1) + ": ");
+                values[i] = Integer.parseInt(input.nextLine());
+
+                if (i > 0 && values[i] < values[i - 1]) {
+                    System.out.println("The numbers must be in ascending order.");
+                    return;
+                }
+            }
+
+            System.out.print("Value to search for: ");
+            int target = Integer.parseInt(input.nextLine());
+
+            int linearIndex = searches.linearSearch(values, target);
+            int linearSteps = searches.getLastSteps();
+
+            int binaryIndex = searches.binarySearch(values, target);
+            int binarySteps = searches.getLastSteps();
+
+            System.out.println("\n" + BOLD + "LINEAR SEARCH" + RESET);
+            if (linearIndex == -1) {
+                System.out.println("Value not found.");
+            } else {
+                System.out.println("Value found at index " + linearIndex + ".");
+            }
+            System.out.println("Comparisons: " + linearSteps);
+
+            System.out.println("\n" + BOLD + "BINARY SEARCH" + RESET);
+            if (binaryIndex == -1) {
+                System.out.println("Value not found.");
+            } else {
+                System.out.println("Value found at index " + binaryIndex + ".");
+            }
+            System.out.println("Comparisons: " + binarySteps);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter whole numbers.");
+        }
+    }
