@@ -13,4 +13,17 @@ public class QueueOperations {
         size++;
         return true;
     }
+
+    public Integer dequeue() {
+        if (size == 0) {
+            return null;
+        }
+
+        int removedValue = values[front];
+        front = (front + 1) % values.length;
+        size--;
+        return removedValue;
+    }
+
+    
 }
