@@ -96,3 +96,26 @@ public class GraphOperations {
         depthFirstVisit(start, visited, order);
         return order;
     }
+
+    private void depthFirstVisit(
+            int vertex, Set<Integer> visited, List<Integer> order) {
+        visited.add(vertex);
+        order.add(vertex);
+
+        for (int neighbor : adjacencyList.get(vertex)) {
+            lastSteps++;
+
+            if (!visited.contains(neighbor)) {
+                depthFirstVisit(neighbor, visited, order);
+            }
+        }
+    }
+
+    public boolean isReachable(int start, int target) {
+        return breadthFirstTraversal(start).contains(target);
+    }
+
+    public int getLastSteps() {
+        return lastSteps;
+    }
+}
