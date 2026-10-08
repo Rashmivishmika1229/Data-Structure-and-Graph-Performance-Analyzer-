@@ -144,14 +144,73 @@ public class Main {
             }
         }
     }
+
+    boolean inMenu = true;
+
+    while(inMenu)
+    {
+        showTitle("STACK OPERATIONS");
+        System.out.println("1. Push");
+        System.out.println("2. Pop");
+        System.out.println("3. Peek");
+        System.out.println("4. Display stack");
+        System.out.println("0. Return to main menu");
+        System.out.println("----------------------------------------------");
+        System.out.print("Enter your choice: ");
+
+        String choice = input.nextLine();
+
+        if (choice.equals("1")) {
+            System.out.print("Value to push: ");
+
+            try {
+                int value = Integer.parseInt(input.nextLine());
+
+                if (stack.push(value)) {
+                    System.out.println("Value pushed onto the stack.");
+                } else {
+                    System.out.println("The stack is full.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a whole number.");
+            }
+
+        } else if (choice.equals("2")) {
+            Integer removedValue = stack.pop();
+
+            if (removedValue == null) {
+                System.out.println("Cannot pop: the stack is empty.");
+            } else {
+                System.out.println("Popped value: " + removedValue);
+            }
+
+        } else if (choice.equals("3")) {
+            Integer topValue = stack.peek();
+
+            if (topValue == null) {
+                System.out.println("Cannot peek: the stack is empty.");
+            } else {
+                System.out.println("Top value: " + topValue);
+            }
+
+        } else if (choice.equals("4")) {
+            stack.display();
+        } else if (choice.equals("0")) {
+            inMenu = false;
+        } else {
+            System.out.println("Invalid choice. Try again.");
+        }
+    }
+}
+    private static void queueMenu(Scanner input, QueueOperations queue) {
         boolean inMenu = true;
 
         while (inMenu) {
-            showTitle("STACK OPERATIONS");
-            System.out.println("1. Push");
-            System.out.println("2. Pop");
-            System.out.println("3. Peek");
-            System.out.println("4. Display stack");
+            showTitle("QUEUE OPERATIONS");
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Peek / Front");
+            System.out.println("4. Display queue");
             System.out.println("0. Return to main menu");
             System.out.println("----------------------------------------------");
             System.out.print("Enter your choice: ");
@@ -159,40 +218,40 @@ public class Main {
             String choice = input.nextLine();
 
             if (choice.equals("1")) {
-                System.out.print("Value to push: ");
+                System.out.print("Value to enqueue: ");
 
                 try {
                     int value = Integer.parseInt(input.nextLine());
 
-                    if (stack.push(value)) {
-                        System.out.println("Value pushed onto the stack.");
+                    if (queue.enqueue(value)) {
+                        System.out.println("Value added to the rear of the queue.");
                     } else {
-                        System.out.println("The stack is full.");
+                        System.out.println("The queue is full.");
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Please enter a whole number.");
                 }
 
             } else if (choice.equals("2")) {
-                Integer removedValue = stack.pop();
+                Integer removedValue = queue.dequeue();
 
                 if (removedValue == null) {
-                    System.out.println("Cannot pop: the stack is empty.");
+                    System.out.println("Cannot dequeue: the queue is empty.");
                 } else {
-                    System.out.println("Popped value: " + removedValue);
+                    System.out.println("Dequeued value: " + removedValue);
                 }
 
             } else if (choice.equals("3")) {
-                Integer topValue = stack.peek();
+                Integer frontValue = queue.peek();
 
-                if (topValue == null) {
-                    System.out.println("Cannot peek: the stack is empty.");
+                if (frontValue == null) {
+                    System.out.println("Cannot peek: the queue is empty.");
                 } else {
-                    System.out.println("Top value: " + topValue);
+                    System.out.println("Front value: " + frontValue);
                 }
 
             } else if (choice.equals("4")) {
-                stack.display();
+                queue.display();
             } else if (choice.equals("0")) {
                 inMenu = false;
             } else {
@@ -200,4 +259,3 @@ public class Main {
             }
         }
     }
-
