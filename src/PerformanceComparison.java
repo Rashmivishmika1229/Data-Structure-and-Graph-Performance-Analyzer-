@@ -37,6 +37,11 @@ public class PerformanceComparison {
             int linearIndex = searches.linearSearch(values, target);
             long linearTime = System.nanoTime() - startTime;
             int linearSteps = searches.getLastSteps();
+
+            startTime = System.nanoTime();
+            int binaryIndex = searches.binarySearch(values, target);
+            long binaryTime = System.nanoTime() - startTime;
+            int binarySteps = searches.getLastSteps();
         }
     }
 }
