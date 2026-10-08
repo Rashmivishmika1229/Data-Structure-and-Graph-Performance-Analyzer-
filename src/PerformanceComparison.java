@@ -42,6 +42,18 @@ public class PerformanceComparison {
             int binaryIndex = searches.binarySearch(values, target);
             long binaryTime = System.nanoTime() - startTime;
             int binarySteps = searches.getLastSteps();
+
+            System.out.println("\nSEARCH COMPARISON");
+
+            System.out.println(
+                    "Linear Search: index=" + linearIndex
+                            + ", comparisons=" + linearSteps
+                            + ", time=" + linearTime + " ns");
+
+            System.out.println(
+                    "Binary Search: index=" + binaryIndex
+                            + ", comparisons=" + binarySteps
+                            + ", time=" + binaryTime + " ns");
         }
     }
 }
