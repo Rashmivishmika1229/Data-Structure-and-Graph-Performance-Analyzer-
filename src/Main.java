@@ -259,3 +259,79 @@ public class Main {
             }
         }
     }
+        private static void linkedListMenu(
+            Scanner input, LinkedListOperations linkedList) {
+        boolean inMenu = true;
+
+        while (inMenu) {
+            showTitle("LINKED LIST OPERATIONS");
+            System.out.println("1. Insert at index");
+            System.out.println("2. Delete by index");
+            System.out.println("3. Search by value");
+            System.out.println("4. Display linked list");
+            System.out.println("0. Return to main menu");
+            System.out.println("----------------------------------------------");
+            System.out.print("Enter your choice: ");
+
+            String choice = input.nextLine();
+
+            if (choice.equals("1")) {
+                System.out.print("Index to insert at (0 to "
+                        + linkedList.getSize() + "): ");
+
+                try {
+                    int index = Integer.parseInt(input.nextLine());
+                    System.out.print("Value to insert: ");
+                    int value = Integer.parseInt(input.nextLine());
+
+                    if (linkedList.insert(index, value)) {
+                        System.out.println("Value inserted.");
+                    } else {
+                        System.out.println("Invalid index.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter whole numbers.");
+                }
+
+            } else if (choice.equals("2")) {
+                System.out.print("Index to delete: ");
+
+                try {
+                    int index = Integer.parseInt(input.nextLine());
+                    Integer removedValue = linkedList.delete(index);
+
+                    if (removedValue == null) {
+                        System.out.println(
+                                "Invalid index or the linked list is empty.");
+                    } else {
+                        System.out.println("Deleted value: " + removedValue);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a whole number.");
+                }
+
+            } else if (choice.equals("3")) {
+                System.out.print("Value to search for: ");
+
+                try {
+                    int value = Integer.parseInt(input.nextLine());
+                    int index = linkedList.search(value);
+
+                    if (index == -1) {
+                        System.out.println("Value not found.");
+                    } else {
+                        System.out.println("Value found at index " + index + ".");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a whole number.");
+                }
+
+            } else if (choice.equals("4")) {
+                linkedList.display();
+            } else if (choice.equals("0")) {
+                inMenu = false;
+            } else {
+                System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
