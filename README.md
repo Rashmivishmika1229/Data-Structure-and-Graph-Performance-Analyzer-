@@ -80,13 +80,12 @@ DataStructureGraphAnalyzer/
 
 **Individual contribution:**
 
-- Implemented linear search to check values sequentially and report the matching index.
-- Implemented binary search to locate values efficiently in ascending-order input.
-- Added input handling for the search comparison, including collecting the values and target to search for.
-- Tracked and reported the number of comparisons made by each search algorithm.
-- Measured and displayed the execution time for linear and binary search.
-- Contributed the search and performance comparison changes through GitHub commits and pull requests.
-- Edited the project demonstration video by arranging the recorded sections and applying appropriate edits to produce a clear, well-organized video.
+- Implemented linear search.
+- Implemented binary search for values entered in ascending order.
+- Added input handling for the search and performance comparison.
+- Measured and reported comparison counts for linear and binary search.
+- Measured and displayed execution times for both search algorithms.
+- Implemented graph traversal performance measurements and included the results in the performance comparison output.
 
 ### 4. K. A. R. V. Kodithuwakku — Student ID: `23DA2-0370`
 
@@ -95,11 +94,10 @@ DataStructureGraphAnalyzer/
 **Individual contribution:**
 
 - Implemented graph vertex and edge management.
-- Implemented graph display, BFS, DFS, and reachability functionality.
-- Added graph traversal performance measurements to the comparison component.
-- Integrated project components into the main application menu.
-- Updated menu navigation and added the option to display results.
-- Resolved integration and compatibility issues between components.
+- Implemented graph display, BFS, and DFS traversals.
+- Added graph reachability checking.
+- Integrated the group members’ components into the main application menu.
+- Resolved compatibility issues during application integration.
 - Managed repository collaboration, including branches, pull requests, and merges.
 
 ### Shared contribution
